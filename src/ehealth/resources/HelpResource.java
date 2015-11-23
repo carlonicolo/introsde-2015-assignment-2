@@ -5,7 +5,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 @Path("/help") // indicates the path under which this resource will be available
+
+/**
+ * This class is intended to be a helper 
+ * containing all the information about the use and
+ * the allowed request that a client can ask to the server
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 public class HelpResource {
+	
+	/**
+	 * This method is used to print all the request that a client 
+	 * can ask to this server. The mediaType is in HTML then this method
+	 * could be requested through a browser.
+	 * 
+	 * @return the complete list of commands that this server performs 
+	 */
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String helpHtml() {
@@ -28,14 +45,21 @@ public class HelpResource {
                 + "</body>"
                 + "</html> ";
     }
-    @GET
-    @Produces(MediaType.TEXT_XML)
-    public String helpXML() {
-        return "<?xml version=\"1.0\"?>" + 
-    "<msg>" + "Help server command"+ "</msg>";
-    }
     
+//    @GET
+//    @Produces(MediaType.TEXT_XML)
+//    public String helpXML() {
+//        return "<?xml version=\"1.0\"?>" + 
+//    "<msg>" + "Help server command"+ "</msg>";
+//    }
     
+    /**
+     * This method is used to print all the request that a client 
+	 * can ask to this server. The mediaType is TEXT_PLAIN then this method
+	 * could be requested through a shell.
+     * 
+     * @return
+     */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String helpTEXT() {
