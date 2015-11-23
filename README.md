@@ -44,8 +44,9 @@ In this project is used ant, then for execute the project and in this way connec
 ant execute.client
 ```
 to execute the client on the server partner. As result will be created two log files:
-* client-server-json.log;
-* client-server-xml.log;
+* **client-server-json.log**;
+* **client-server-xml.log**;
+
 that contain the output requests/responses information as requsted for the assignment.
 
 Is also possible to execute the client over my own server in this way:
@@ -53,8 +54,8 @@ Is also possible to execute the client over my own server in this way:
 ant execute.client.myserver
 ```
 and create in this way the corresponding log files:
-* client-server-json-myserver.log;
-* client-server-xml-myserver.log;
+* **client-server-json-myserver.log**;
+* **client-server-xml-myserver.log**;
 
 This is the part of build.xml file that perform that commands:
 ```xml
@@ -80,7 +81,7 @@ ant start
 ```
 This is a screenshot that shows the execution of this command in the eclipse IDE
 
-![Tree project](http://www.carlonicolo.com/IntroSDE/Assignment2/standaloneExecution.png)
+![StandaloneServerExecution](http://www.carlonicolo.com/IntroSDE/Assignment2/standaloneExecution.png)
 
 
 
