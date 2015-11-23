@@ -28,7 +28,7 @@ public class HelpResource {
     public String helpHtml() {
         return "<html> " + "<title>" + "" + "</title>"
                 + "<body>"
-                + "<h1>" + "Welcome to my server !!" + "</h1>"
+                + "<h1>" + "Welcome to my server !" + "</h1>"
                 + "<h2>" + "*** List of all methods that my server provides ***" + "</h2>"
                 + "<h3>" +  "[Request #1] GET /person list all the people in database" + "</h3>"
     			+ "<h3>" + "[Request #2] GET /person/{id} give all the personal information plus current measures of person identified by {id}" + "</h3>"
