@@ -25,7 +25,7 @@ In the picture below is showed the source tree of the project
 * **src/ehealth/client**: the client for connecting to my server or my partner server;
 * **src/ehealth/App.java**: a stand-alone server used to test locally the server;
 * **lifecoach.sqlite**: the database;
-* ** *.log**: four files that contain the result of the execution performed over my sever and the partner server, using both format JSON and XML;
+* ***.log**: four files that contain the result of the execution performed over my sever and the partner server, using both format JSON and XML;
 
 Configuration files:
 * **ivy.xml**: to deal with the dependencies;
