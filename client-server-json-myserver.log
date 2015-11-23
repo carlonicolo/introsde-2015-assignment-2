@@ -1,268 +1,268 @@
 
 execute.client.myserver.json:
-      json
-      https://enigmatic-sierra-2066.herokuapp.com/sdelab
-      =============================================================================================================
-      Request #1: GET person/ Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {"people": [
-          {
-              "firstname": "Karlitos",
-              "idPerson": 1,
-              "birthdate": "1977-08-31",
-              "lastname": "Brigante",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.83"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "110"
-                  }
-              ]
-          },
-          {
-              "firstname": "Andrew",
-              "idPerson": 2,
-              "birthdate": "1998-08-31",
-              "lastname": "Law",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.87"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "89"
-                  }
-              ]
-          },
-          {
-              "firstname": "Bob",
-              "idPerson": 3,
-              "birthdate": "1968-08-31",
-              "lastname": "Marley",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.70"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "68"
-                  }
-              ]
-          }
-      ]}
-      First person id json: 1
-      Last person id json: 3
-      =============================================================================================================
-      Request #2: GET person/1 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {
-          "firstname": "Karlitos",
-          "idPerson": 1,
-          "birthdate": "1977-08-31",
-          "lastname": "Brigante",
-          "measureType": [
-              {
-                  "measure": "height",
-                  "value": "1.83"
-              },
-              {
-                  "measure": "weight",
-                  "value": "110"
-              }
-          ]
-      }
-      =============================================================================================================
-      Request #3: PUT person/1 Accept: application/json Content-Type: application/json
-      ==> Result: [ERROR]
-      ==> HTTP Status: [201]
-      [BODY]
-      
-      {
-          "firstname": "Joe",
-          "idPerson": 1,
-          "birthdate": "1977-08-31",
-          "lastname": "Brigante",
-          "measureType": [
-              {
-                  "measure": "height",
-                  "value": "1.83"
-              },
-              {
-                  "measure": "weight",
-                  "value": "110"
-              }
-          ]
-      }
-      =============================================================================================================
-      Request #4: POST person/ Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {
-          "firstname": "Chuck",
-          "idPerson": 52,
-          "birthdate": "1945-01-01",
-          "lastname": "Norris",
-          "measureType": [
-              {
-                  "measure": "weight",
-                  "value": "78.9"
-              },
-              {
-                  "measure": "height",
-                  "value": "172"
-              }
-          ]
-      }
-      =============================================================================================================
-      =============================================================================================================
-      Request #5: DELETE person/52 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [404]
-      [BODY]
-      
-      =============================================================================================================
-      =============================================================================================================
-      Request #6: GET /measureTypes Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {"measureTypes": [
-          "weight",
-          "height",
-          "steps",
-          "blood pressure",
-          "heart rate",
-          "bmi"
-      ]}
-      =============================================================================================================
-      =============================================================================================================
-      Request #7: GET /measureTypes Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {
-          "created": "2015-11-18",
-          "mid": 2,
-          "value": "110"
-      }
-      =============================================================================================================
-      =============================================================================================================
-      Request #8: GET person/1/weight/2 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      Mid value: 110
-      =============================================================================================================
-      =============================================================================================================
-      Request #9: POST person/1/weight Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {
-          "measure": "weight",
-          "value": "72"
-      }
-      =============================================================================================================
-      =============================================================================================================
-      Request #10: PUT person/1/weight/53 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [201]
-      [BODY]
-      
-      {
-          "created": "2011-12-09",
-          "mid": 53,
-          "value": "90"
-      }
-      =============================================================================================================
-      =============================================================================================================
-      Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      [
-          {
-              "created": "2015-11-18",
-              "mid": 2,
-              "value": "110"
-          },
-          {
-              "created": "2011-12-09",
-              "mid": 53,
-              "value": "90"
-          }
-      ]
-      =============================================================================================================
-      Request #12: GET person?measureType=weight&max=100&min=20 Accept: application/json Content-Type: application/json
-      ==> Result: [OK]
-      ==> HTTP Status: [200]
-      [BODY]
-      
-      {"people": [
-          {
-              "firstname": "Andrew",
-              "idPerson": 2,
-              "birthdate": "1998-08-31",
-              "lastname": "Law",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.87"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "89"
-                  }
-              ]
-          },
-          {
-              "firstname": "Bob",
-              "idPerson": 3,
-              "birthdate": "1968-08-31",
-              "lastname": "Marley",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.70"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "68"
-                  }
-              ]
-          },
-          {
-              "firstname": "Joe",
-              "idPerson": 1,
-              "birthdate": "1977-08-31",
-              "lastname": "Brigante",
-              "measureType": [
-                  {
-                      "measure": "height",
-                      "value": "1.83"
-                  },
-                  {
-                      "measure": "weight",
-                      "value": "72"
-                  }
-              ]
-          }
-      ]}
+     [java] json
+     [java] https://enigmatic-sierra-2066.herokuapp.com/sdelab
+     [java] =============================================================================================================
+     [java] Request #1: GET person/ Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {"people": [
+     [java]     {
+     [java]         "firstname": "Karlitos",
+     [java]         "idPerson": 1,
+     [java]         "birthdate": "1977-08-31",
+     [java]         "lastname": "Brigante",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.83"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "110"
+     [java]             }
+     [java]         ]
+     [java]     },
+     [java]     {
+     [java]         "firstname": "Andrew",
+     [java]         "idPerson": 2,
+     [java]         "birthdate": "1998-08-31",
+     [java]         "lastname": "Law",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.87"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "89"
+     [java]             }
+     [java]         ]
+     [java]     },
+     [java]     {
+     [java]         "firstname": "Bob",
+     [java]         "idPerson": 3,
+     [java]         "birthdate": "1968-08-31",
+     [java]         "lastname": "Marley",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.70"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "68"
+     [java]             }
+     [java]         ]
+     [java]     }
+     [java] ]}
+     [java] First person id json: 1
+     [java] Last person id json: 3
+     [java] =============================================================================================================
+     [java] Request #2: GET person/1 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "firstname": "Karlitos",
+     [java]     "idPerson": 1,
+     [java]     "birthdate": "1977-08-31",
+     [java]     "lastname": "Brigante",
+     [java]     "measureType": [
+     [java]         {
+     [java]             "measure": "height",
+     [java]             "value": "1.83"
+     [java]         },
+     [java]         {
+     [java]             "measure": "weight",
+     [java]             "value": "110"
+     [java]         }
+     [java]     ]
+     [java] }
+     [java] =============================================================================================================
+     [java] Request #3: PUT person/1 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [ERROR]
+     [java] ==> HTTP Status: [201]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "firstname": "Joe",
+     [java]     "idPerson": 1,
+     [java]     "birthdate": "1977-08-31",
+     [java]     "lastname": "Brigante",
+     [java]     "measureType": [
+     [java]         {
+     [java]             "measure": "height",
+     [java]             "value": "1.83"
+     [java]         },
+     [java]         {
+     [java]             "measure": "weight",
+     [java]             "value": "110"
+     [java]         }
+     [java]     ]
+     [java] }
+     [java] =============================================================================================================
+     [java] Request #4: POST person/ Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "firstname": "Chuck",
+     [java]     "idPerson": 52,
+     [java]     "birthdate": "1945-01-01",
+     [java]     "lastname": "Norris",
+     [java]     "measureType": [
+     [java]         {
+     [java]             "measure": "weight",
+     [java]             "value": "78.9"
+     [java]         },
+     [java]         {
+     [java]             "measure": "height",
+     [java]             "value": "172"
+     [java]         }
+     [java]     ]
+     [java] }
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #5: DELETE person/52 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [404]
+     [java] [BODY]
+     [java] 
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #6: GET /measureTypes Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {"measureTypes": [
+     [java]     "weight",
+     [java]     "height",
+     [java]     "steps",
+     [java]     "blood pressure",
+     [java]     "heart rate",
+     [java]     "bmi"
+     [java] ]}
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #7: GET person/1/height Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "created": "2015-11-18",
+     [java]     "mid": 2,
+     [java]     "value": "110"
+     [java] }
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #8: GET person/1/weight/2 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] Mid value: 110
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #9: POST person/1/weight Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "measure": "weight",
+     [java]     "value": "72"
+     [java] }
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #10: PUT person/1/weight/53 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [201]
+     [java] [BODY]
+     [java] 
+     [java] {
+     [java]     "created": "2011-12-09",
+     [java]     "mid": 53,
+     [java]     "value": "90"
+     [java] }
+     [java] =============================================================================================================
+     [java] =============================================================================================================
+     [java] Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] [
+     [java]     {
+     [java]         "created": "2015-11-18",
+     [java]         "mid": 2,
+     [java]         "value": "110"
+     [java]     },
+     [java]     {
+     [java]         "created": "2011-12-09",
+     [java]         "mid": 53,
+     [java]         "value": "90"
+     [java]     }
+     [java] ]
+     [java] =============================================================================================================
+     [java] Request #12: GET person?measureType=weight&max=100&min=20 Accept: application/json Content-Type: application/json
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] {"people": [
+     [java]     {
+     [java]         "firstname": "Andrew",
+     [java]         "idPerson": 2,
+     [java]         "birthdate": "1998-08-31",
+     [java]         "lastname": "Law",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.87"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "89"
+     [java]             }
+     [java]         ]
+     [java]     },
+     [java]     {
+     [java]         "firstname": "Bob",
+     [java]         "idPerson": 3,
+     [java]         "birthdate": "1968-08-31",
+     [java]         "lastname": "Marley",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.70"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "68"
+     [java]             }
+     [java]         ]
+     [java]     },
+     [java]     {
+     [java]         "firstname": "Joe",
+     [java]         "idPerson": 1,
+     [java]         "birthdate": "1977-08-31",
+     [java]         "lastname": "Brigante",
+     [java]         "measureType": [
+     [java]             {
+     [java]                 "measure": "height",
+     [java]                 "value": "1.83"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "72"
+     [java]             }
+     [java]         ]
+     [java]     }
+     [java] ]}

@@ -39,11 +39,12 @@ ant generate.doc
 ```
 
 ## How to run
-In this project is used ant, then for execute the project and in this way connect to the partner server or my own server is necessary to perform this ant command:
+In this project is used ant, then for executing the project is necessary to perform this ant command:
 ```
 ant execute.client
 ```
-to execute the client on the server partner. As result will be created two log files:
+to execute the client on the server partner.
+As result will be created two log files:
 * **client-server-json.log**;
 * **client-server-xml.log**;
 
@@ -141,7 +142,7 @@ As mentioned before the command performed to execute the client on my server is
 ```
 ant execute.client.myserver
 ```
-Well then we are ready to start explaining in pratice how the request/response work:
+Well then we are ready to start show in pratice how the request/response work:
 
 myserver address: **https://enigmatic-sierra-2066.herokuapp.com/sdelab**
 ### **Step 3.1.**
@@ -938,14 +939,22 @@ Request #12: GET person/1?weight?max=100&min=20 Accept: application/xml Content-
 
 ## Appendix
 
-**JSON**
-
-```json
-
+There is the possibility to create the javadoc for the project executing the command:
+```
+ant generate.doc
 ```
 
-**XML**
+Clean the project using the command:
+```
+ant clean
+```
 
-```xml
+Only compile the server using the command:
+```
+ant install
+```
 
+Compile and starting the server on the stand-alone server with:
+```
+ant start
 ```
