@@ -243,7 +243,7 @@
     	
     	
     	<!-- Generate javadocs for current project into ${doc.dir} -->
-    	  <target name="doc" depends="init" description="generate documentation">
+    	  <target name="generate.doc" depends="init" description="generate documentation">
     	    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
     	  </target>
     	
