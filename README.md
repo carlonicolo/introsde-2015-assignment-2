@@ -39,22 +39,22 @@ ant generate.doc
 ```
 
 ## How to run
-In this project is used ant, then for executing the project is necessary to perform this ant command:
+In this project is used ant, for executing the project is necessary to perform this ant command:
 ```
 ant execute.client
 ```
-to execute the client on the server partner.
+and execute the client on the server partner.
 As result will be created two log files:
 * **client-server-json.log**;
 * **client-server-xml.log**;
 
-that contain the output requests/responses information as requsted for the assignment.
+these files contain the output requests/responses information as requsted for the assignment.
 
-Is also possible to execute the client over my own server in this way:
+Furthermore is also possible to execute the client over my own server in this way:
 ```
 ant execute.client.myserver
 ```
-and create in this way the corresponding log files:
+and create the corresponding log files:
 * **client-server-json-myserver.log**;
 * **client-server-xml-myserver.log**;
 
@@ -130,7 +130,7 @@ For the [assignment](https://sites.google.com/a/unitn.it/introsde_2015-16/lab-se
 
 **Extra #4 (Request #12)**: GET /person?measureType={measureType}&max={max}&min={min}
 
-To better understand and see in pratice how the server works and how these services work i will execute the client on my server and explain all requests looking at the response. In this way not only will be explained the exposed service but also check the correct execution of the project.
+To better understand and see in pratice how the server works and how these services work i will execute the client on my server and will explain all requests looking at the response. In this way, not only will be explained the exposed service, but also will be checked the correct execution of the project.
 
 I will use the content of **client-server-xml-myserver.log** and **client-server-json-myserver.log**, the real data stored and collected after the execution of:
 ```
@@ -958,3 +958,8 @@ Compile and starting the server on the stand-alone server with:
 ```
 ant start
 ```
+
+**Video: How run and execute the project**
+
+Below there is the link to video where are showed all the phases starting from cloning the repository to execute tasks in ant.
+[![How to use and run the project](http://i.imgur.com/EIjWfkr.png?1)](https://vimeo.com/146603687)
