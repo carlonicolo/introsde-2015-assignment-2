@@ -76,7 +76,7 @@ execute.client.friend.xml:
      [java] 
      [java] <person>
      [java]   <idPerson>1</idPerson>
-     [java]   <firstname>Joe</firstname>
+     [java]   <firstname>Jack</firstname>
      [java]   <lastname>Grant</lastname>
      [java]   <birthdate>1978-08-31T22:00:00Z</birthdate>
      [java]   <healthprofile>
@@ -99,7 +99,7 @@ execute.client.friend.xml:
      [java] [BODY]
      [java] 
      [java] <person>
-     [java]   <idPerson>52</idPerson>
+     [java]   <idPerson>54</idPerson>
      [java]   <firstname>Chuck</firstname>
      [java]   <lastname>Norris</lastname>
      [java]   <birthdate>1945-01-01T00:00:00Z</birthdate>
@@ -117,7 +117,7 @@ execute.client.friend.xml:
      [java] 
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #5: DELETE person/52 Accept: application/xml Content-Type: application/xml
+     [java] Request #5: DELETE person/54 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [404]
      [java] [BODY]
@@ -140,7 +140,7 @@ execute.client.friend.xml:
      [java] 
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #7: GET /measureTypes Accept: application/xml Content-Type: application/xml
+     [java] Request #7: GET person/1/height Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [200]
      [java] [BODY]
@@ -153,6 +153,16 @@ execute.client.friend.xml:
      [java]   </mesure>
      [java]   <mesure>
      [java]     <mid>53</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>56</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>59</mid>
      [java]     <value>90</value>
      [java]     <created>2011-12-09T00:00:00Z</created>
      [java]   </mesure>
@@ -180,7 +190,7 @@ execute.client.friend.xml:
      [java] 
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #10: PUT person/1/weight/56 Accept: application/xml Content-Type: application/xml
+     [java] Request #10: PUT person/1/weight/62 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [201]
      [java] [BODY]
@@ -198,6 +208,16 @@ execute.client.friend.xml:
      [java]   </mesure>
      [java]   <mesure>
      [java]     <mid>56</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>59</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>62</mid>
      [java]     <value>90</value>
      [java]     <created>2011-12-09T00:00:00Z</created>
      [java]   </mesure>
@@ -223,6 +243,16 @@ execute.client.friend.xml:
      [java]   </mesure>
      [java]   <mesure>
      [java]     <mid>56</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>59</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>62</mid>
      [java]     <value>90</value>
      [java]     <created>2011-12-09T00:00:00Z</created>
      [java]   </mesure>
@@ -253,7 +283,7 @@ execute.client.friend.xml:
      [java]   </person>
      [java]   <person>
      [java]     <idPerson>1</idPerson>
-     [java]     <firstname>Joe</firstname>
+     [java]     <firstname>Jack</firstname>
      [java]     <lastname>Grant</lastname>
      [java]     <birthdate>1978-08-31T22:00:00Z</birthdate>
      [java]     <healthprofile>

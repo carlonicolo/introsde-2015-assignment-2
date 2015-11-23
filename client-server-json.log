@@ -10,15 +10,15 @@ execute.client.friend.json:
      [java] 
      [java] {"people": [
      [java]     {
-     [java]         "firstname": "Ellis",
+     [java]         "firstname": "Jack",
      [java]         "healthprofile": [
-     [java]             {
-     [java]                 "measure": "weight",
-     [java]                 "value": "72.3"
-     [java]             },
      [java]             {
      [java]                 "measure": "height",
      [java]                 "value": "1.86"
+     [java]             },
+     [java]             {
+     [java]                 "measure": "weight",
+     [java]                 "value": "72"
      [java]             }
      [java]         ],
      [java]         "idPerson": 1,
@@ -51,15 +51,15 @@ execute.client.friend.json:
      [java] [BODY]
      [java] 
      [java] {
-     [java]     "firstname": "Ellis",
+     [java]     "firstname": "Jack",
      [java]     "healthprofile": [
-     [java]         {
-     [java]             "measure": "weight",
-     [java]             "value": "72.3"
-     [java]         },
      [java]         {
      [java]             "measure": "height",
      [java]             "value": "1.86"
+     [java]         },
+     [java]         {
+     [java]             "measure": "weight",
+     [java]             "value": "72"
      [java]         }
      [java]     ],
      [java]     "idPerson": 1,
@@ -68,7 +68,7 @@ execute.client.friend.json:
      [java] }
      [java] =============================================================================================================
      [java] Request #3: PUT person/1 Accept: application/json Content-Type: application/json
-     [java] ==> Result: [OK]
+     [java] ==> Result: [ERROR]
      [java] ==> HTTP Status: [201]
      [java] [BODY]
      [java] 
@@ -76,12 +76,12 @@ execute.client.friend.json:
      [java]     "firstname": "Joe",
      [java]     "healthprofile": [
      [java]         {
-     [java]             "measure": "weight",
-     [java]             "value": "72.3"
-     [java]         },
-     [java]         {
      [java]             "measure": "height",
      [java]             "value": "1.86"
+     [java]         },
+     [java]         {
+     [java]             "measure": "weight",
+     [java]             "value": "72"
      [java]         }
      [java]     ],
      [java]     "idPerson": 1,
@@ -106,13 +106,13 @@ execute.client.friend.json:
      [java]             "value": "172"
      [java]         }
      [java]     ],
-     [java]     "idPerson": 51,
+     [java]     "idPerson": 53,
      [java]     "birthdate": "1945-01-01",
      [java]     "lastname": "Norris"
      [java] }
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #5: DELETE person/51 Accept: application/json Content-Type: application/json
+     [java] Request #5: DELETE person/53 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [404]
      [java] [BODY]
@@ -134,7 +134,7 @@ execute.client.friend.json:
      [java] ]}
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #7: GET /measureTypes Accept: application/json Content-Type: application/json
+     [java] Request #7: GET person/1/height Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [200]
      [java] [BODY]
@@ -165,14 +165,14 @@ execute.client.friend.json:
      [java] }
      [java] =============================================================================================================
      [java] =============================================================================================================
-     [java] Request #10: PUT person/1/weight/53 Accept: application/json Content-Type: application/json
+     [java] Request #10: PUT person/1/weight/59 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [201]
      [java] [BODY]
      [java] 
      [java] {
      [java]     "created": "2011-12-09",
-     [java]     "mid": 53,
+     [java]     "mid": 59,
      [java]     "value": "90"
      [java] }
      [java] =============================================================================================================
@@ -191,6 +191,16 @@ execute.client.friend.json:
      [java]     {
      [java]         "created": "2011-12-09",
      [java]         "mid": 53,
+     [java]         "value": "90"
+     [java]     },
+     [java]     {
+     [java]         "created": "2011-12-09",
+     [java]         "mid": 56,
+     [java]         "value": "90"
+     [java]     },
+     [java]     {
+     [java]         "created": "2011-12-09",
+     [java]         "mid": 59,
      [java]         "value": "90"
      [java]     }
      [java] ]

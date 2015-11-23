@@ -26,7 +26,7 @@ public class MeasureHistoryWrapper {
 	private List<HealthMeasureHistory> healthMeasureHistory = new ArrayList<HealthMeasureHistory>();
 	
 	//get method
-	@XmlElement(name = "mesure")
+	@XmlElement(name = "measure")
 	@JsonValue
 	public List<HealthMeasureHistory> getHealthMeasureHistory(){
 		return this.healthMeasureHistory;

@@ -63,7 +63,7 @@ public class TestClient {
 				if(connxml.equals("https://enigmatic-sierra-2066.herokuapp.com/sdelab")){
 					carlo.request1();
 			        carlo.request2();
-			        carlo.request3("Joe");
+			        carlo.request3("Smith");
 			        carlo.request4();
 			        carlo.request5();
 			        carlo.request6();
@@ -79,7 +79,7 @@ public class TestClient {
 				}else if(connxml.equals("https://peaceful-hamlet-5616.herokuapp.com/sdelab")){
 					andrea.request1();
 			        andrea.request2();
-			        andrea.request3("Joe");
+			        andrea.request3("Jack");
 			        andrea.request4();
 			        andrea.request5();
 			        andrea.request6();

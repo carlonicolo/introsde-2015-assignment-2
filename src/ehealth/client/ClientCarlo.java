@@ -498,7 +498,7 @@ public class ClientCarlo{
 		//x = (firstname_after_put_json.equals(firstname_request3_json));
 		//System.out.println(x);
 
-		if(firstname_after_put_json.equals(firstname_request3_json)){
+		if(firstname_after_put_json == firstname_request3_json){
 			codeErrorR3_json = "OK";
 			displayClientResponse(3, response3_json, "PUT", path_request2_json, json, codeErrorR3_json);
 			System.out.println(prettyFormatJson(json_put));
@@ -789,6 +789,7 @@ public class ClientCarlo{
 		path_request7_first_id = "person/"+first_person_id+"/";
 		path_request7_last_id = "person/"+last_person_id+"/";
 		
+		String path_request7 = "";
 		//System.out.println(path_request7_first_id);
 		//System.out.println(path_request7_last_id);
 		
@@ -815,6 +816,7 @@ public class ClientCarlo{
 				listMeasureIdMeasureType_first_id.add(xmlGetRequest7_first_id);
 				
 				first_id_person_measure = true;
+				path_request7 = path_request7_first_id+measureTypeList.get(i).toString(); 
 				countValid_measure_first_id++;
 				
 			}
@@ -839,7 +841,7 @@ public class ClientCarlo{
 				listMeasureIdMeasureType_last_id.add(xmlGetRequest7_last_id);
 				
 				last_id_person_measure = true;
-				
+				path_request7 = path_request7_last_id+measureTypeList.get(i).toString();
 				countValid_measure_last_id++;
 			}
 			
@@ -849,7 +851,7 @@ public class ClientCarlo{
 	}
 		if((countValid_measure_first_id >0) || (countValid_measure_first_id>0)){
 			codeErrorR7 = "OK";
-			displayClientResponse(7, Response.ok().build(), "GET", path_request6, xml, codeErrorR7);
+			displayClientResponse(7, Response.ok().build(), "GET", path_request7, xml, codeErrorR7);
 			if(countValid_measure_first_id > 0){
 				System.out.println(prettyFormat(listMeasureIdMeasureType_first_id.get(2)));
 				}else{
@@ -857,7 +859,7 @@ public class ClientCarlo{
 				}
 		}else{
 			codeErrorR7 = "ERROR";
-			displayClientResponse(7, Response.ok().build(), "GET", path_request6, xml, codeErrorR7);
+			displayClientResponse(7, Response.ok().build(), "GET", path_request7, xml, codeErrorR7);
 			System.out.println(prettyFormat(xmlGetMeasureTypes));
 		}
 		
@@ -898,6 +900,8 @@ public class ClientCarlo{
 			path_request7_first_id = "person/"+first_person_id_json+"/";
 			path_request7_last_id = "person/"+last_person_id_json+"/";
 			
+			String path_request7 = "";
+			
 			//System.out.println(path_request7_first_id);
 			//System.out.println(path_request7_last_id);
 			
@@ -932,7 +936,7 @@ public class ClientCarlo{
 					listMeasureIdMeasureType_first_id_json.add(measureTypeList_json.get(i).toString()); //measureType
 					listMeasureIdMeasureType_first_id_json.add(first_id_json.toString());
 					
-					
+					path_request7 = path_request7_first_id+measureTypeList_json.get(i).toString();
 					first_id_person_measure = true;
 					countValid_measure_first_id++;
 					
@@ -960,7 +964,7 @@ public class ClientCarlo{
 					listMeasureIdMeasureType_first_id_json.add(last_id_json.toString());
 					
 					last_id_person_measure = true;
-					
+					path_request7 = path_request7_last_id+measureTypeList_json.get(i).toString();
 					countValid_measure_last_id++;
 				}
 				
@@ -970,7 +974,7 @@ public class ClientCarlo{
 		}
 			if((countValid_measure_first_id >0) || (countValid_measure_first_id>0)){
 				codeErrorR7_json = "OK";
-				displayClientResponse(7, Response.ok().build(), "GET", path_request6, json, codeErrorR7_json);
+				displayClientResponse(7, Response.ok().build(), "GET", path_request7, json, codeErrorR7_json);
 				if(countValid_measure_first_id > 0){
 					System.out.println(prettyFormatJson(listMeasureIdMeasureType_first_id_json.get(2)));
 					}else{
@@ -978,7 +982,7 @@ public class ClientCarlo{
 					}
 			}else{
 				codeErrorR7 = "ERROR";
-				displayClientResponse(7, Response.ok().build(), "GET", path_request6, json, codeErrorR7_json);
+				displayClientResponse(7, Response.ok().build(), "GET", path_request7, json, codeErrorR7_json);
 				//System.out.println(prettyFormat(xmlGetMeasureTypes));
 			}
 			
