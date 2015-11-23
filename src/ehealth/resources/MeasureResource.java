@@ -30,6 +30,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
+/**
+ * This is class is represents the MeasureResource
+ * and exposes a GET request method getMeasureType 
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 @Stateless // will work only inside a Java EE application
 @LocalBean // will work only inside a Java EE application
 @Path("/measureTypes")
@@ -53,6 +60,14 @@ public class MeasureResource {
     
     //Request #9
     // Return the list of measureTypes
+    /**
+     * This method is used to retrieve a list of MeasureDefinition
+     * 
+     * Assignment Request
+     * Request #9: GET /measureTypes should return the list of measures your model supports
+     * 
+     * @return w contains a list of MeasureDefinition
+     */
     @GET
     @Produces({MediaType.TEXT_XML,  MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML })
     public MeasureDefinitionWrapper getMeasureType() {

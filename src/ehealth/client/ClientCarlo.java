@@ -238,6 +238,7 @@ public class ClientCarlo{
 	private String mid_r9_json = "";
 	private String val_r9_json = "";
 	
+	//Mid values used in request10
 	private String mid_r10 = "";
 	private String val_r10 = "";
 	private String mid_r10_json = "";
@@ -254,6 +255,13 @@ public class ClientCarlo{
 	private String min = "";
 	private String max = "";
 
+	/**
+	 * This is method allow to create an object for this class
+	 * with the param connection string that represents the address of the
+	 * server that we want interact with
+	 * 
+	 * @param conn is the connection string representing the server that we want contact
+	 */
 	public ClientCarlo(String conn){
 		ClientConfig clientConfig = new ClientConfig();
 		Client client = ClientBuilder.newClient(clientConfig);
@@ -264,32 +272,58 @@ public class ClientCarlo{
 	
 	
 	// STEP 1:
+	/**
+	 * This method sends the R#1 request GET /person
+	 * Calculate how many people are in the response. 
+	 * If more than 2, result is OK, else is ERROR (less than 3 persons). 
+	 * Save into a variable id of the first person (first_person_id) and of the last person (last_person_id)
+	 * 
+	 * 
+	 * Assignment client Step
+	 * Step 3.1
+	 * MediaType.Application_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request1() throws ParserConfigurationException, SAXException, IOException{
 		response1 = service.path(base_url).request().accept(MediaType.APPLICATION_XML).get(Response.class);
 		xmlGetAll = response1.readEntity(String.class);
 		Element rootElement= ClientCarlo.createXMLelement(xmlGetAll);
-		
+
 		//boolean x = false;
 		if (rootElement.getElementsByTagName("person").getLength() >2){
 			codeErrorR1 = "OK";
 		}else{
 			codeErrorR1 = "ERROR";
 		}
-		
+
 
 		first_person_id = rootElement.getFirstChild().getFirstChild().getTextContent();
 		last_person_id = rootElement.getLastChild().getFirstChild().getTextContent();
-		
-		
+
+
 		displayClientResponse(1, response1, "GET", base_url,  xml, codeErrorR1);
 		System.out.println(prettyFormat(xmlGetAll));
 		System.out.println("=============================================================================================================");
-		
+
 	}
 	
 	
 	
-	
+	/**
+	 * This method sends the R#1 request GET /person
+	 * Calculate how many people are in the response. 
+	 * If more than 2, result is OK, else is ERROR (less than 3 persons). 
+	 * Save into a variable id of the first person (first_person_id) and of the last person (last_person_id)
+	 * 
+	 * 
+	 * Assignment client Step
+	 * Step 3.1
+	 * MediaType.Application_JSON
+	 * 
+	 */
 	public void request1_json(){
 		Response response1_json = service.path(base_url).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		String JsonGetAll = response1_json.readEntity(String.class);
@@ -326,6 +360,16 @@ public class ClientCarlo{
 	
 	
 	// STEP 2:
+	/**
+	 * Step 3.2
+	 * Send R#2 for first_person_id. If the responses for this is 200 or 202, the result is OK.
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request2() throws ParserConfigurationException, SAXException, IOException{
 		path_request2 = base_url+first_person_id;
 		response2 = service.path(path_request2).request().accept(MediaType.APPLICATION_XML).get(Response.class);
@@ -345,7 +389,12 @@ public class ClientCarlo{
 		}
 	}
 	
-	
+	/**
+	 * Step 3.2
+	 * Send R#2 for first_person_id. If the responses for this is 200 or 202, the result is OK.
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 */
 	public void request2_json(){
 		
 		path_request2_json = base_url+first_person_id_json;
@@ -374,9 +423,18 @@ public class ClientCarlo{
 	
 	
 	
-	// STEP 3:
-	// R#3 for first_person_id changing the firstname.
-	// If the responses has the name changed, the result is OK.
+	
+	/**
+	 * Step 3.3
+	 * Send R#3 for first_person_id changing the firstname. If the responses has the name changed, the result is OK
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @param firstname the name to change
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request3(String firstname) throws ParserConfigurationException, SAXException, IOException{
 		firstname_request3 = firstname;
 		input_put = "<person><firstname>"+firstname_request3+"</firstname></person>";
@@ -406,35 +464,40 @@ public class ClientCarlo{
 	}
 	
 	
-	//STEP 3
-	// Step 3.3. Send R#3 for first_person_id changing the firstname.
-	// If the responses has the name changed, the result is OK.
+	
+	/**
+	 * Step 3.3
+	 * Send R#3 for first_person_id changing the firstname. If the responses has the name changed, the result is OK
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @param firstname the name to change
+	 */
 	public void request3_json(String firstname){
 		firstname_request3_json = firstname;
-		
+
 		JSONObject obj = new JSONObject();
 		obj.put("firstname", firstname_request3_json);
 		String input_put = obj.toString();
-		
+
 		Response response3_json = service.path(path_request2_json).request().accept(MediaType.APPLICATION_JSON).put(Entity.entity(input_put, MediaType.APPLICATION_JSON));
-		
+
 		Response response3_get_json = service.path(path_request2_json).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		json_put = response3_get_json.readEntity(String.class);
-		
+
 		//System.out.println("RESPONSE JSON 3 " + response3_get_json);
 		//System.out.println("JSON_PUT " + json_put);
-		
+
 		JSONObject getPut_json = new JSONObject(json_put);
 		//System.out.println("firstname_request_json: " + firstname_request3_json);
-		
-		
+
+
 		String firstname_after_put_json = getPut_json.getString("firstname").toString();
 		//System.out.println("firstname_after_put_json: " + firstname_after_put_json);
-		
+
 		//boolean x = false;
 		//x = (firstname_after_put_json.equals(firstname_request3_json));
 		//System.out.println(x);
-		
+
 		if(firstname_after_put_json.equals(firstname_request3_json)){
 			codeErrorR3_json = "OK";
 			displayClientResponse(3, response3_json, "PUT", path_request2_json, json, codeErrorR3_json);
@@ -444,8 +507,8 @@ public class ClientCarlo{
 			displayClientResponse(3, response3_json, "PUT", path_request2_json, json, codeErrorR3_json);
 			System.out.println(prettyFormatJson(json_put));
 		}
-		
-		
+
+
 	}
 	
 	
@@ -453,6 +516,16 @@ public class ClientCarlo{
 	
 	
 	// STEP 4:
+	/**
+	 * Step 3.4. Send R#4 to create the following person. Store the id of the new person. 
+	 * If the answer is 201 (200 or 202 are also applicable) with a person in the body who has an ID, the result is OK
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request4() throws ParserConfigurationException, SAXException, IOException{
 		
 		String input_post = "<person>"
@@ -491,9 +564,14 @@ public class ClientCarlo{
 	}
 	
 	
-	
-	
-public void request4_json() throws ParserConfigurationException, SAXException, IOException{
+	/**
+	 * Step 3.4. Send R#4 to create the following person. Store the id of the new person. 
+	 * If the answer is 201 (200 or 202 are also applicable) with a person in the body who has an ID, the result is OK
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 */
+	public void request4_json() throws ParserConfigurationException, SAXException, IOException{
 		
 		String input_post = "<person>"
 				+ "<firstname>Chuck</firstname>"
@@ -541,17 +619,13 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// STEP 5:
+	/**
+	 * Step 3.5. Send R#5 for the person you have just created.
+	 * Then send R#1 with the id of that person. If the answer is 404, your result must be OK.
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 */
 	public void request5(){
 		//System.out.println(this.id_new_person_request4);
 		String path_request5 = base_url+this.id_new_person_request4;
@@ -579,6 +653,13 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		return response1_1;
 	}
 	
+	/**
+	 * Step 3.5. Send R#5 for the person you have just created.
+	 * Then send R#1 with the id of that person. If the answer is 404, your result must be OK.
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 */
 	public void request5_json(){
 		//System.out.println(this.id_new_person_request4_json);
 		String path_request5 = base_url+id_new_person_request4_json;
@@ -601,12 +682,17 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	}
 	
 	
-
-	
-	//STEP 6:
-	// Follow now with the R#9 (GET BASE_URL/measureTypes). 
-	// If response contains more than 2 measureTypes - result is OK, 
-	// else is ERROR (less than 3 measureTypes). Save all measureTypes into array (measure_types)
+	/**
+	 * Step 3.6. Follow now with the R#9 (GET BASE_URL/measureTypes). 
+	 * If response contains more than 2 measureTypes - result is OK, else is ERROR 
+	 * (less than 3 measureTypes). Save all measureTypes into array (measure_types)
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request6() throws ParserConfigurationException, SAXException, IOException{
 		response6 = service.path(path_request6).request().accept(MediaType.APPLICATION_XML).get(Response.class);
 		xmlGetMeasureTypes = response6.readEntity(String.class);
@@ -644,10 +730,17 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	//STEP 6:
-	// Follow now with the R#9 (GET BASE_URL/measureTypes). 
-	// If response contains more than 2 measureTypes - result is OK, 
-	// else is ERROR (less than 3 measureTypes). Save all measureTypes into array (measure_types)
+	/**
+	 * Step 3.6. Follow now with the R#9 (GET BASE_URL/measureTypes). 
+	 * If response contains more than 2 measureTypes - result is OK, else is ERROR 
+	 * (less than 3 measureTypes). Save all measureTypes into array (measure_types)
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request6_json() throws ParserConfigurationException, SAXException, IOException{
 		response6_json = service.path(path_request6).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		jsonGetMeasureTypes = response6_json.readEntity(String.class);
@@ -677,28 +770,21 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 			measureTypeList_json.add(json_array_request1.getString(i));
 		}
 		
-		
-//		for (int i = 0; i < measureTypeList_json.size(); i++) {
-//			String value = measureTypeList_json.get(i);
-//			System.out.println("Element: " + value);
-//			}
 
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	// STEP 7:
-	// Send R#6 (GET BASE_URL/person/{id}/{measureType}) for the first person you obtained at the beginning 
-	// and the last person, and for each measure types from measure_types. 
-	// If no response has at least one measure - result is ERROR (no data at all) else result is OK. 
-	// Store one measure_id and one measureType.
+	/**
+	 * Step 3.7. Send R#6 (GET BASE_URL/person/{id}/{measureType}) for the first person you obtained at the beginning and the last person,
+	 * and for each measure types from measure_types. 
+	 * If no response has at least one measure - result is ERROR (no data at all) else result is OK. Store one measure_id and one measureType.
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request7() throws ParserConfigurationException, SAXException, IOException{
 		path_request7_first_id = "person/"+first_person_id+"/";
 		path_request7_last_id = "person/"+last_person_id+"/";
@@ -797,11 +883,17 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	// STEP 7:
-		// Send R#6 (GET BASE_URL/person/{id}/{measureType}) for the first person you obtained at the beginning 
-		// and the last person, and for each measure types from measure_types. 
-		// If no response has at least one measure - result is ERROR (no data at all) else result is OK. 
-		// Store one measure_id and one measureType.
+	/**
+	 * Step 3.7. Send R#6 (GET BASE_URL/person/{id}/{measureType}) for the first person you obtained at the beginning and the last person,
+	 * and for each measure types from measure_types. 
+	 * If no response has at least one measure - result is ERROR (no data at all) else result is OK. Store one measure_id and one measureType.
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request7_json() throws ParserConfigurationException, SAXException, IOException{
 			path_request7_first_id = "person/"+first_person_id_json+"/";
 			path_request7_last_id = "person/"+last_person_id_json+"/";
@@ -916,11 +1008,16 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 
-	
-	
-	// STEP 8:
-	// Send R#7 (GET BASE_URL/person/{id}/{measureType}/{mid}) for the stored measure_id and measureType. 
-	// If the response is 200, result is OK, else is ERROR
+	/**
+	 * Step 3.8. Send R#7 (GET BASE_URL/person/{id}/{measureType}/{mid}) 
+	 * for the stored measure_id and measureType. If the response is 200, result is OK, else is ERROR.
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request8() throws ParserConfigurationException, SAXException, IOException{
 		
 		//control if there is a valid id and measuretype for the first_person_id or last_person_id
@@ -977,9 +1074,16 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	// STEP 8:
-	// Send R#7 (GET BASE_URL/person/{id}/{measureType}/{mid}) for the stored measure_id and measureType. 
-	// If the response is 200, result is OK, else is ERROR
+	/**
+	 * Step 3.8. Send R#7 (GET BASE_URL/person/{id}/{measureType}/{mid}) 
+	 * for the stored measure_id and measureType. If the response is 200, result is OK, else is ERROR.
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request8_json() throws ParserConfigurationException, SAXException, IOException{
 
 		//control if there is a valid id and measuretype for the first_person_id or last_person_id
@@ -1034,15 +1138,20 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	}
 		
 	
-	
-	
-	
-	
-	// STEP 9:
-	// Choose a measureType from measure_types and send the request R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) and save 
-	// count value (e.g. 5 measurements). Then send R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes}) with the measurement specified below. 
-	// Follow up with another R#6 as the first to check the new count value. 
-	// If it is 1 measure more - print OK, else print ERROR. Remember, first with JSON and then with XML as content-types
+	/**
+	 * Step 3.9. Choose a measureType from measure_types and send the request 
+	 * R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) 
+	 * and save count value (e.g. 5 measurements). 
+	 * Then send R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes}) 
+	 * with the measurement specified below. 
+	 * Follow up with another R#6 as the first to check the new count value. If it is 1 measure more - print OK, else print ERROR
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request9() throws ParserConfigurationException, SAXException, IOException{
 		
 		//System.out.println("Valore measureTypeList.get(0)" + measureTypeList.get(0));
@@ -1102,13 +1211,20 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
-	
-	// STEP 9:
-	// Choose a measureType from measure_types and send the request R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) and save 
-	// count value (e.g. 5 measurements). Then send R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes}) with the measurement specified below. 
-	// Follow up with another R#6 as the first to check the new count value. 
-	// If it is 1 measure more - print OK, else print ERROR. Remember, first with JSON and then with XML as content-types
+	/**
+	 * Step 3.9. Choose a measureType from measure_types and send the request 
+	 * R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) 
+	 * and save count value (e.g. 5 measurements). 
+	 * Then send R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes}) 
+	 * with the measurement specified below. 
+	 * Follow up with another R#6 as the first to check the new count value. If it is 1 measure more - print OK, else print ERROR
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request9_json() throws ParserConfigurationException, SAXException, IOException{
 
 		//System.out.println("Valore measureTypeList.get(0)" + measureTypeList.get(0));
@@ -1193,16 +1309,16 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	// STEP 10
-	// Send R#10 (Request #10): PUT /person/{id}/{measureType}/{mid}
-	// using the {mid} or the measure created in the previous step and updating the value at will. 
-	// Follow up with at R#6 to check that the value was updated. If it was, result is OK, else is ERROR.
+	/**
+	 * Step 3.10. Send R#10 using the {mid} or the measure created in the previous step and updating the value at will. 
+	 * Follow up with at R#6 to check that the value was updated. If it was, result is OK, else is ERROR.
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request10() throws ParserConfigurationException, SAXException, IOException{
 		
 		path_request10 = base_url+first_person_id+"/"+measureTypeList.get(0)+"/"+mid_r9;
@@ -1224,19 +1340,7 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		
 		mid_r10 = rootElementR10_get.getLastChild().getFirstChild().getTextContent();
 		val_r10 = rootElementR10_get.getLastChild().getFirstChild().getNextSibling().getTextContent();
-		
-		//xmlGetRequest10_HealthHistory = rootElementR10_get.getLastChild().getTextContent();
-		//NodeList x = rootElementR10_get.getLastChild().getChildNodes();
-		
-		//System.out.println(xmlGetRequest10_HealthHistory);
-		
-//		for(int i= 0; i < x.getLength(); i++){
-//			System.out.println(x.item(i).getTextContent());
-//		}
-		
-		
-		//number_children_request9_after = rootElementR9_1.getChildNodes().getLength();
-		//System.out.println("number_children_request9_after: " + number_children_request9_after);
+	
 		
 		if( val_r10 != val_r9 ){
 			codeErrorR10 = "OK";
@@ -1255,7 +1359,16 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
+	/**
+	 * Step 3.10. Send R#10 using the {mid} or the measure created in the previous step and updating the value at will. 
+	 * Follow up with at R#6 to check that the value was updated. If it was, result is OK, else is ERROR.
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request10_json() throws ParserConfigurationException, SAXException, IOException{
 		
 		path_request10 = base_url+first_person_id_json+"/"+measureTypeList_json.get(0)+"/"+mid_r9_json;
@@ -1310,14 +1423,18 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		
 	}
 	
-	
-	// STEP 11
-	//
-	// Send R#11 GET /person/{id}/{measureType}?before={beforeDate}&after={afterDate} should return the history of {measureType}
-	// (e.g., weight) for person {id} in the specified range of date
-	//
-	// for a measureType, before and after dates given by your fellow student (who implemnted the server). 
-	// If status is 200 and there is at least one measure in the body, result is OK, else is ERROR
+	/**
+	 * Step 3.11. Send R#11 for a measureType, before and after dates given by your fellow student (who implemnted the server). 
+	 * If status is 200 and there is at least one measure in the body, result is OK, else is ERROR
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @param befor is the upper bound limit date
+	 * @param aft is the lower bound limit date
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request11(String befor, String aft) throws ParserConfigurationException, SAXException, IOException{
 		
 		//path=person/1/weight?before=2015-12-09&after=2015-07-10
@@ -1353,7 +1470,18 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
+	/**
+	 * Step 3.11. Send R#11 for a measureType, before and after dates given by your fellow student (who implemnted the server). 
+	 * If status is 200 and there is at least one measure in the body, result is OK, else is ERROR
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @param befor is the upper bound limit date
+	 * @param aft is the lower bound limit date
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request11_json(String befor, String aft) throws ParserConfigurationException, SAXException, IOException{
 
 		//path=person/1/weight?before=2015-12-09&after=2015-07-10
@@ -1376,24 +1504,6 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		int arrayR11Lenght = arrayR11.length(); 
 		String ar = arrayR11.toString(4);
 		
-		//System.out.println(ar);
-		
-		
-		//JSONObject x = new JSONObject();
-		
-		//x = arrayR11.getJSONObject(index);
-		
-		
-		//prettyFormatJson(ar);
-		
-		
-		//JSONObject jsonR11_obj = arrayR11.; 
-		
-		
-		//System.out.println(xmlGetRequest11);
-
-		//System.out.println("rootElement_R11.getChildNodes().getLength(): " + rootElement_R11.getChildNodes().getLength());
-
 		if( ( r11_json.getStatus() ) == 200 && ( arrayR11Lenght > 0 ) ){
 			codeErrorR11_json = "OK";
 			displayClientResponse(11, r11_json, "GET", path_request11_format_json, json, codeErrorR11_json);
@@ -1408,11 +1518,6 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
-	
-	
-	
-	
 	// STEP 12
 	//
 	// Send R#12 GET /person?measureType={measureType}&max={max}&min={min} retrieves people whose {measureType} (e.g., weight) value is in the [{min},{max}] range 
@@ -1421,6 +1526,19 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	// using the same parameters as the preivious steps.
 	// If status is 200 and there is at least one person in the body, result is OK, else is ERROR
 	// 
+	
+	/**
+	 * Step 3.12. Send R#12 using the same parameters as the preivious steps. 
+	 * If status is 200 and there is at least one person in the body, result is OK, else is ERROR
+	 * 
+	 * MediaType.APPLICATION_XML
+	 * 
+	 * @param mx is the upper bound limit of the measure value
+	 * @param mi is the lower bound limit of the measure value
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request12(String mx, String mi) throws ParserConfigurationException, SAXException, IOException{
 		
 		//path=person/1/weight?max=100&min=40 SBAGLIATO
@@ -1429,19 +1547,12 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		this.min = mi;
 		this.max = mx;
 		
-		
-		
 		String path_request12 = "person";
 		String measureTypeRequest12 = measureTypeList.get(0);
 		path_request12_format = base_url+first_person_id+"?"+measureTypeList.get(0)+"?"+"max="+max+"&min="+min;
-
-
-		
-		
 		
 		response12 = service.path(path_request12).queryParam("measureType",measureTypeRequest12).queryParam("max", max).queryParam("min", min).request().accept(MediaType.APPLICATION_XML).get(Response.class);
 		//System.out.println(response12);
-		
 		
 		xmlGetRequest12 = response12.readEntity(String.class);
 		Element rootElement_R12 = ClientCarlo.createXMLelement(xmlGetRequest12);
@@ -1463,10 +1574,6 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	}
 	
 	
-	
-	
-	
-	
 	// STEP 12
 	//
 	// Send R#12 GET /person?measureType={measureType}&max={max}&min={min} retrieves people whose {measureType} (e.g., weight) value is in the [{min},{max}] range 
@@ -1475,6 +1582,19 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	// using the same parameters as the preivious steps.
 	// If status is 200 and there is at least one person in the body, result is OK, else is ERROR
 	// 
+	
+	/**
+	 * Step 3.12. Send R#12 using the same parameters as the preivious steps. 
+	 * If status is 200 and there is at least one person in the body, result is OK, else is ERROR
+	 * 
+	 * MediaType.APPLICATION_JSON
+	 * 
+	 * @param mx is the upper bound limit of the measure value
+	 * @param mi is the lower bound limit of the measure value
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void request12_json(String mx, String mi) throws ParserConfigurationException, SAXException, IOException{
 
 		//path=person/1/weight?max=100&min=40 SBAGLIATO
@@ -1490,24 +1610,14 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 		
 		path_request12_format_json = path_request12_json+"?measureType="+measureTypeList_json.get(0)+"&"+"max="+max+"&min="+min;
 
-		
-		
-		//System.out.println("path_request12_format_json: " + path_request12_format_json );
+	
 
 		response12_json = service.path(path_request12_json).queryParam("measureType",measureTypeRequest12).queryParam("max", max).queryParam("min", min).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		//System.out.println("Response12_json: " + response12_json);
 		
 		jsonGetRequest12 = response12_json.readEntity(String.class);
 		
-//		Element rootElement_R12 = ClientCarlo.createXMLelement(xmlGetRequest12);
-//		NodeList r12 = rootElement_R12.getChildNodes();
-		
-//		JSONArray arrayR12 = new JSONArray(jsonGetRequest12);
-		//System.out.println("arrayR11: " + arrayR11 );
-		
-		
-//		int arrayR12Lenght = arrayR12.length(); 
-//		String ar = arrayR12.toString(4);
+
 		
 		JSONObject r12 = new JSONObject(jsonGetRequest12);
 		//System.out.println("r12 lenght: " + r12.length());
@@ -1527,11 +1637,9 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 
 	}
 
-	
-	
-	
-	
-	
+	/**
+	 * This method is used to call the help in my server
+	 */
 	public void help(){
 		String help_path = "/help";
 		
@@ -1555,7 +1663,15 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	}
 
 	
-	
+	/**
+	 * This method is used to create a root element
+	 * 
+	 * @param query the query string 
+	 * @return rootElement
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public static Element createXMLelement(String query) throws ParserConfigurationException, SAXException, IOException{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -1566,7 +1682,13 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	
 	
 	
-	
+	/**
+	 * This method is used to format in pretty way the xml
+	 * 
+	 * @param input the string to format
+	 * @param indent the value of indentation code
+	 * @return a string pretty well formatted in xml style
+	 */
 	public static String prettyFormat(String input, int indent) {
 	    try {
 	        Source xmlInput = new StreamSource(new StringReader(input));
@@ -1584,25 +1706,43 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	    }
 	}
 
+	/**
+	 * This method is used to format in pretty way the xml
+	 * @param input
+	 * @return
+	 */
 	public static String prettyFormat(String input) {
 	    return prettyFormat(input, 2);
 	}
 	
-	
+	/**
+	 * This method is used to display the JSON in pretty format
+	 * @param jsonString the string to indent in json style
+	 * @return string formatted in right way for json
+	 */
 	private static String prettyFormatJson(String jsonString) {
 		JSONObject json = new JSONObject(jsonString); // Convert text to object
 		return json.toString(4); // Print it with specified indentation	
 	}
 	
 	
-	
 	/**
+	 * This method is a template used to display the 
+	 * request in the format requested by the assignment 
+	 * 
+	 * Example:
 	 * Display the output of request
 	 * Request #7: GET /person/5/weight/899 Accept: APPLICATION/XML Content-Type: APPLICATION/XML  
 	 * => Result: OK
 	 * => HTTP Status: 200
 	 * 
-	 * @param res
+	 * 
+	 * @param request the number of the request
+	 * @param res is the response variable from which is taken the status
+	 * @param typerequest the type of request e.i. GET
+	 * @param path the path of the request
+	 * @param accept the content type accepted
+	 * @param code_result the result of the performed request
 	 */
 	private static void displayClientResponse(int request, Response res, String typerequest ,String path ,String accept, String code_result){
 		int status = res.getStatus();
@@ -1619,6 +1759,13 @@ public void request4_json() throws ParserConfigurationException, SAXException, I
 	} 
 	
 	
+	/**
+	 * This method is used to create URI used to connect the cliet to the server
+	 * passed as String in the param
+	 * 
+	 * @param conn the connection string of the server
+	 * @return 
+	 */
 	private static URI getBaseURI(String conn) {
 		return UriBuilder.fromUri(conn).build(); //my server
 		//return UriBuilder.fromUri("https://peaceful-hamlet-5616.herokuapp.com/sdelab").build(); //Andrea

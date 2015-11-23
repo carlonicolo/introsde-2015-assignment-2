@@ -29,6 +29,33 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+
+
+/**
+ * This class is a resource for the Person and provides
+ * some methods for GET, PUT, POST,DELETE requests
+ * 
+ * GET:
+ * getPerson()
+ * getMeasureHistoryId(@PathParam("measureType") String measureName,@PathParam("mid") int mid)
+ * getPersonHTML()
+ * getPersonById(int personId)
+ * getPersonHistory(@PathParam("measureType") String measureName, QueryParam("before") String before,QueryParam("after") String after)
+ * 
+ * PUT:
+ * putPerson(Person person)
+ * putHealthHistory(HealthMeasureHistory heathhostory,@PathParam("mid") int mid)
+ * 
+ * 
+ * POST
+ * newMeasureValue(HealthMeasureHistory hmh, @PathParam("measureType") String measureName)
+ * 
+ * DELETE:
+ * deletePerson()
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 @Stateless // only used if the the application is deployed in a Java EE container
 @LocalBean // only used if the the application is deployed in a Java EE container
 public class PersonResource {
@@ -53,20 +80,18 @@ public class PersonResource {
         this.id = id;
     }
 
-//    // Application integration
-//    // Request #2
-//    @GET
-//    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-//    public Person getPerson() {
-//        Person person = this.getPersonById(id);
-//        if (person == null)
-//            throw new RuntimeException("Get: Person with " + id + " not found");
-//        return person;
-//    }
     
-    
-    // Application integration
-    // Request #2
+    /**
+     * This method is used to get the all the personal information 
+     * and produce a response for XML and JSON and
+     * 
+     * Assignment request
+     * Request #2 of the assignment: GET /person/{id} should give all the 
+     * personal information plus current measures of person identified by {id}
+     * 
+     * @return null if the person is not found
+     * @return person is the person related to the id
+     */
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public Response getPerson() {
@@ -78,8 +103,19 @@ public class PersonResource {
     }
     
     
-   
-    //Request #7:
+    /**
+     * This method is used to get the value of {measureType} identified by the {mid} 
+     * for the person identified by {id}.
+     * This is done calling the method getHealthMeasureHistoryById(mid)
+     * 
+     * Assignment request
+     * Request #7 : GET /person/{id}/{measureType}/{mid} should return the value of {measureType} 
+     * (e.g. weight) identified by {mid} for person identified by {id}
+     * 
+     * @param measureName is the name of the measure
+     * @param mid is an int value representing the mid
+     * @return value of measureType
+     */
     @GET
     @Path("{measureType}/{mid}")
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
@@ -100,7 +136,17 @@ public class PersonResource {
         return person;
     }
     
-    // Request #3
+    
+    /**
+     * This method is used to update the personal information of a specified person using the method
+     * updatePerson.
+     * 
+     * Assignment request
+     * Request #3: PUT /person/{id} should update the personal information of the person identified by {id}
+     * 
+     * @param person the person that we want update
+     * @return res the Response of this method
+     */
     @PUT
     @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public Response putPerson(Person person) {
@@ -130,6 +176,12 @@ public class PersonResource {
         return res;
     } 
     
+    /**
+     * This method is used to delete a person identified by the id.
+     * 
+     * Assignment Request
+     * Request #5: DELETE /person/{id} should delete the person identified by {id} from the system
+     */
     @DELETE
     public void deletePerson() {
         Person c = getPersonById(id);
@@ -138,6 +190,8 @@ public class PersonResource {
                     + " not found");
         Person.removePerson(c);
     }
+    
+    
 
     public Person getPersonById(int personId) {
         System.out.println("Reading person from DB with id: "+personId);
@@ -150,30 +204,18 @@ public class PersonResource {
         return person;
     }
     
-    //Request #6
-//    @GET
-//    @Path("{measureType}")
-//    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-//    public List<HealthMeasureHistory> getPersonHistory(@PathParam("measureType") String measureName) {
-//    	System.out.println("///////////"+measureName);
-//    	System.out.println("///////////"+id);
-//    	List<MeasureDefinition> list_md = MeasureDefinition.getAll();
-//    	MeasureDefinition md = new MeasureDefinition();
-//    	for (MeasureDefinition temp : list_md) {
-//    		if (temp.getMeasureName().equals(measureName)){
-//    			md=temp;
-//    		}
-//    	}
-//    	Person person = this.getPersonById(id);
-//    	List<HealthMeasureHistory> list_MH = HealthMeasureHistory.getByPersonMeasure(person, md);
-//    	//List<HealthMeasureHistory> list_MH = HealthMeasureHistory.getAll();
-//        /*if (** == null)
-//            throw new RuntimeException("Get: History for person " + id + " not found");*/
-//        return list_MH;
-//    }
     
-    
-    //#Request #8
+    /**
+     * This method is used to save a new value for the measureType
+     * 
+     * Assignment request
+     * Request #8: POST /person/{id}/{measureType} should save a new value for the {measureType} (e.g. weight) 
+     * of person identified by {id} and archive the old value in the history
+     * 
+     * @param hmh is the HealthMeasureHistory
+     * @param measureName is the measure name
+     * @return newlf that is the new lifestatus 
+     */
     @POST
     @Path("{measureType}")
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
@@ -212,9 +254,16 @@ public class PersonResource {
     
     
     /**
-     * Extra #2 (Request #10):
-     * PUT /person/{id}/{measureType}/{mid} should update the value for the {measureType} (e.g., weight) 
-     * identified by {mid}, related to the person identified by {id}
+     * This method is used to update the value of measureType identified by {mid} and related to
+     * the person 
+     * 
+     * Assignment request
+     * Extra #2(Request #10): PUT /person/{id}/{measureType}/{mid} should update the value for the {measureType} 
+     * (e.g., weight) identified by {mid}, related to the person identified by {id}
+     * 
+     * @param heathhostory is the healthHistory 
+     * @param mid is the id of the HealthMeasureHistory that must be modified
+     * @return res contains the object Response 
      */
     @PUT
     @Path("{measureType}/{mid}")
@@ -235,14 +284,26 @@ public class PersonResource {
     
     
     /**
-     * Request #6 and Extra #3
+     * This method is used for two GET requests:
      * 
-     * GET /person/{id}/{measureType}?before={beforeDate}&after={afterDate} should return the history of {measureType} 
-     * (e.g., weight) for person {id} in the specified range of date
+     * Assignment request
+     * - Request #6: GET /person/{id}/{measureType} should return the list of values 
+     * (the history) of {measureType} (e.g. weight) for person identified by {id}
      * 
-     * @param measureName
-     * @return
-     * @throws ParseException 
+     * - Request #11: GET /person/{id}/{measureType}?before={beforeDate}&after={afterDate} 
+     * should return the history of {measureType} (e.g., weight) for person {id} in the specified range of date
+     * 
+     * To deal with the problem of the path, there is a condition that evaluates the params.
+     * In this way if the params "before" and "after" are not passed means that is requested R#6
+     * Otherwise if the params "before" and "after" are passed is executed R#11
+     * 
+     * 
+     * @param measureName measure name
+     * @param before the upper bound value
+     * @param after the lower boud value
+     * @return w contains the MeasureHistory for the request #6
+     * @return y contains the MeasureHistory for the request #11
+     * @throws ParseException
      */
     @GET
     @Path("{measureType}")

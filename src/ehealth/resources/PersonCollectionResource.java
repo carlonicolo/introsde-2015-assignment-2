@@ -28,6 +28,23 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
+/**
+ * This class is a collection Resource for the Person
+ * and provides some methods to perform GET and POST requests.
+ * 
+ * GET
+ * getCount()
+ * getPersonsBrowser(@QueryParam("measureType") String measureName,@QueryParam("min") Double min,@QueryParam("max") Double max)
+ * 
+ * POST
+ * newPerson(Person person)
+ * 
+ * 
+ * 
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 @Stateless // will work only inside a Java EE application
 @LocalBean // will work only inside a Java EE application
 @Path("/person")
@@ -50,18 +67,11 @@ public class PersonCollectionResource {
     
     
 
-    // Request #2
-    // Return the list of people to the user in the browser
-//    @GET
-//    @Produces({MediaType.TEXT_XML,  MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML })
-//    public List<Person> getPersonsBrowser() {
-//        System.out.println("Getting list of people...");
-//        List<Person> people = Person.getAll();
-//        return people;
-//    }
-
-    // retuns the number of people
-    // to get the total number of records
+    /**
+     * This method is used to know the number of people
+     * 
+     * @return String.valueOf(count) that is a String representing the number of the people
+     */
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
@@ -72,7 +82,18 @@ public class PersonCollectionResource {
         return String.valueOf(count);
     }
 
-    
+    /**
+     * This method is used to create a new Person.
+     * First checks if the person has an healthProfile then create a person with
+     * a healthProfile
+     * 
+     * Assignment request #4: POST /person should create a new person and return the newly created person with its 
+     * assigned id (if a health profile is included, create also those measurements for the new person).
+     * 
+     * @param person
+     * @return person the person created and saved in the database
+     * @throws IOException
+     */
     @POST
     @Produces({MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML})
@@ -133,10 +154,15 @@ public class PersonCollectionResource {
     
     
     
-    // Defines that the next path parameter after the base url is
-    // treated as a parameter and passed to the PersonResources
-    // Allows to type http://localhost:599/base_url/1
-    // 1 will be treaded as parameter todo and passed to PersonResource
+    /**
+     * Defines that the next path parameter after the base url is
+     * treated as a parameter and passed to the PersonResources
+     * Allows to type http://localhost:599/base_url/1
+     * 1 will be treaded as parameter todo and passed to PersonResource
+     * 
+     * @param id 
+     * @return PersonResouce
+     */
     @Path("{personId}")
     public PersonResource getPerson(@PathParam("personId") int id) {
         return new PersonResource(uriInfo, request, id);
@@ -146,18 +172,27 @@ public class PersonCollectionResource {
     
     
     /**
-     * Request Extra #4 Request #12  and Request#1
+     * This method is used a GET request and perform the request #1 and request #12
+     * In this case to deal with the ambiguity due to the fact that that both requests have
+     * the same path in the first line of this method is checked the value of min and max double.
+     * If both min and max are null then is executed the request 1# otherwise the request #12 is performed
      * 
-     * GET /person?measureType={measureType}&max={max}&min={min} retrieves people whose {measureType} (e.g., weight) value is 
-     * in the [{min},{max}] range (if only one for the query params is provided, use only that)
-     *
+     * Assignment request
+     * Request #1: GET /person should list all the people (see above Person model to know what data to return here) 
+     * in your database (wrapped under the root element "people")
+     * 
+     * Request #12: GET /person?measureType={measureType}&max={max}&min={min} retrieves people whose {measureType} 
+     * (e.g., weight) value is in the [{min},{max}] range (if only one for the query params is provided, use only that)
+     * 
+     * @param measureName
+     * @param min is the lower bound value
+     * @param max is the upper bound value
+     * @return list of people
      */
     @GET
     @Produces({MediaType.TEXT_XML,  MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML })
     public PeopleWrapper getPersonsBrowser(@QueryParam("measureType") String measureName, @QueryParam("min") Double min,
     		@QueryParam("max") Double max) {
-    	
-    	
     	
     	List<Person> people = new ArrayList<Person>();
     	
@@ -212,26 +247,7 @@ public class PersonCollectionResource {
             return f;
     	}
     	
-//        System.out.println("Getting list of people...");
-//        List<Person> people = Person.getAll();
-//        return people;
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
 }

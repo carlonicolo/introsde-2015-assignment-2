@@ -53,9 +53,11 @@
         <!-- PART 2: General properties definitions -->
         <property name="build.dir" value="build" />
         <property name="src.dir" value="src" />
+    	<property name="doc.dir" value="doc" />
         <property name="lib.dir" value="WebContent/WEB-INF/lib" />
         <property name="web.dir" value="." />
         <property name="webcontent.dir" value="WebContent" />
+    	
         <!-- ================================= 
 	          target: resolve downloads the dependencies to your lib folder              
 	         ================================= -->
