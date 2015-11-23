@@ -1,7 +1,7 @@
 
 execute.client.myserver.xml:
      [java] xml
-     [java] https://introsde-server-carlo.herokuapp.com/sdelab/
+     [java] https://enigmatic-sierra-2066.herokuapp.com/sdelab
      [java] =============================================================================================================
      [java] Request #1: GET person/ Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -64,7 +64,7 @@ execute.client.myserver.xml:
      [java]   </person>
      [java] </people>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #2: GET person/1 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -88,7 +88,7 @@ execute.client.myserver.xml:
      [java]   </healthprofile>
      [java] </person>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #3: PUT person/1 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [ERROR]
@@ -112,7 +112,7 @@ execute.client.myserver.xml:
      [java]   </healthprofile>
      [java] </person>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #4: POST person/ Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -136,14 +136,14 @@ execute.client.myserver.xml:
      [java]   </healthprofile>
      [java] </person>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #5: DELETE person/54 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [404]
      [java] [BODY]
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #6: GET /measureTypes Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -159,7 +159,7 @@ execute.client.myserver.xml:
      [java]   <measureType>bmi</measureType>
      [java] </measureTypes>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #7: GET /measureTypes Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -179,7 +179,7 @@ execute.client.myserver.xml:
      [java]   </mesure>
      [java] </measureHistory>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #8: GET person/1/weight/2 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -187,7 +187,7 @@ execute.client.myserver.xml:
      [java] [BODY]
      [java] 
      [java] Mid value: 110
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #9: POST person/1/weight Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -199,7 +199,7 @@ execute.client.myserver.xml:
      [java]   <value>72</value>
      [java] </lifestatus>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #10: PUT person/1/weight/56 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]
@@ -224,7 +224,7 @@ execute.client.myserver.xml:
      [java]   </mesure>
      [java] </measureHistory>
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: application/xml Content-Type: application/xml
      [java] ==> Result: [OK]

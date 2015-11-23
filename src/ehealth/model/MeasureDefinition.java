@@ -139,10 +139,10 @@ public class MeasureDefinition implements Serializable {
 	}
 	
 	/**
+	 * This method is used to save a measure definition passed through parameter 
 	 * 
-	 * 
-	 * @param p
-	 * @return
+	 * @param p measure definition to save
+	 * @return p the measure definition saved
 	 */
 	public static MeasureDefinition saveMeasureDefinition(MeasureDefinition p) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();

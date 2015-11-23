@@ -81,7 +81,7 @@ public class TestClient {
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 		
 		String connAndrea = "https://peaceful-hamlet-5616.herokuapp.com/sdelab";
-		String connCarlo = "https://introsde-server-carlo.herokuapp.com/sdelab/";
+		String connCarlo = "https://enigmatic-sierra-2066.herokuapp.com/sdelab";
         
 		ClientCarlo carlo = new ClientCarlo(connCarlo);
 		ClientCarlo andrea = new ClientCarlo(connAndrea);
@@ -99,7 +99,7 @@ public class TestClient {
 			//Execution of the method PrintAllPeople
 			if (method.equals("xml")) {
 				String connxml = args[1];
-				if(connxml.equals("https://introsde-server-carlo.herokuapp.com/sdelab/")){
+				if(connxml.equals("https://enigmatic-sierra-2066.herokuapp.com/sdelab")){
 					carlo.request1();
 			        carlo.request2();
 			        carlo.request3("Joe");
@@ -136,7 +136,7 @@ public class TestClient {
 
 			}else if (method.equals("json")){
 				String connjson = args[1];
-				if(connjson.equals("https://introsde-server-carlo.herokuapp.com/sdelab/")){
+				if(connjson.equals("https://enigmatic-sierra-2066.herokuapp.com/sdelab")){
 					carlo.request1_json();
 			        carlo.request2_json();
 			        carlo.request3_json("Joe");

@@ -1,7 +1,7 @@
 
 execute.client.myserver.json:
      [java] json
-     [java] https://introsde-server-carlo.herokuapp.com/sdelab/
+     [java] https://enigmatic-sierra-2066.herokuapp.com/sdelab
      [java] =============================================================================================================
      [java] Request #1: GET person/ Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -126,14 +126,14 @@ execute.client.myserver.json:
      [java]         }
      [java]     ]
      [java] }
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #5: DELETE person/52 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
      [java] ==> HTTP Status: [404]
      [java] [BODY]
      [java] 
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #6: GET /measureTypes Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -148,7 +148,7 @@ execute.client.myserver.json:
      [java]     "heart rate",
      [java]     "bmi"
      [java] ]}
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #7: GET /measureTypes Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -160,7 +160,7 @@ execute.client.myserver.json:
      [java]     "mid": 2,
      [java]     "value": "110"
      [java] }
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #8: GET person/1/weight/2 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -168,7 +168,7 @@ execute.client.myserver.json:
      [java] [BODY]
      [java] 
      [java] Mid value: 110
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #9: POST person/1/weight Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -179,7 +179,7 @@ execute.client.myserver.json:
      [java]     "measure": "weight",
      [java]     "value": "72"
      [java] }
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #10: PUT person/1/weight/53 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]
@@ -191,7 +191,7 @@ execute.client.myserver.json:
      [java]     "mid": 53,
      [java]     "value": "90"
      [java] }
-     [java] ===========================================================
+     [java] =============================================================================================================
      [java] =============================================================================================================
      [java] Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: application/json Content-Type: application/json
      [java] ==> Result: [OK]

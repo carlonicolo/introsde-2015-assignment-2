@@ -141,7 +141,7 @@
     	<target name="execute.client.myserver.xml">
     		<java classname="ehealth.client.TestClient" classpath="build">
     			<arg value="xml"/>
-    			<arg value="https://introsde-server-carlo.herokuapp.com/sdelab/"/>
+    			<arg value="https://enigmatic-sierra-2066.herokuapp.com/sdelab"/>
     			<classpath>
     				<path location="build" />
     				<fileset dir="WebContent/WEB-INF/lib">
@@ -157,7 +157,7 @@
     	<target name="execute.client.myserver.json">
     		<java classname="ehealth.client.TestClient" classpath="build">
     			<arg value="json"/>
-    			<arg value="https://introsde-server-carlo.herokuapp.com/sdelab/"/>
+    			<arg value="https://enigmatic-sierra-2066.herokuapp.com/sdelab"/>
     			<classpath>
     				<path location="build" />
     				<fileset dir="WebContent/WEB-INF/lib">
