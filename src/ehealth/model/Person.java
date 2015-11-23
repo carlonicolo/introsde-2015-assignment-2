@@ -52,8 +52,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Carlo Nicolo'
  *
  */
-
-
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id // defines this attributed as the one that identifies the entity
@@ -221,9 +219,9 @@ public class Person implements Serializable {
      * measure defination value between a min and a max.
      * The query used is Person.findbyMeasureDefRange 
      * 
-     * @param md 	this is the measure definition (e.g: weight or height)
-     * @param min 	is the lower bound of the measure definition
-     * @param max 	is the upper bound of the measure definition 
+     * @param md this is the measure definition (e.g: weight or height)
+     * @param min is the lower bound of the measure definition
+     * @param max is the upper bound of the measure definition 
      * @return list this is a list with all person that have a measure definition that is the the range {(min),(max)}
      */
     public static List<Person> getPersonMeasureRange(MeasureDefinition md, double min, double max) {
@@ -246,8 +244,8 @@ public class Person implements Serializable {
     /**
      * This method is used to save a Person passed as param
      * 
-     * @param p 	this is the person that we want save
-     * @return p	this is the person that we have saved		 
+     * @param p this is the person that we want save
+     * @return p this is the person that we have saved		 
      */
     public static Person savePerson(Person p) {
         EntityManager em = LifeCoachDao.instance.createEntityManager();
@@ -262,8 +260,8 @@ public class Person implements Serializable {
     /**
      * This method is used to update a Person passed as param
      * 
-     * @param p		this is the person that we want update
-     * @return p	this is the person that with the updated values
+     * @param p	this is the person that we want update
+     * @return p this is the person that with the updated values
      */
     public static Person updatePerson(Person p) {
         EntityManager em = LifeCoachDao.instance.createEntityManager(); 

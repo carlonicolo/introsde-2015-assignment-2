@@ -23,13 +23,28 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @Entity
 @Table(name="MeasureDefinition")
 
-
+/**
+ * The queries:
+ * - to get all measure definition
+ * - to get the measure definition that match with the value passed as parameter 
+ */
 @NamedQueries({
 	@NamedQuery(name="MeasureDefinition.findAll", query="SELECT m FROM MeasureDefinition m"),
 	@NamedQuery(name="MeasureDefinition.getMeasureDefinitionByName", query="SELECT d FROM MeasureDefinition d WHERE d.measureName = ?1 ")
 })
 
 @XmlRootElement(name="measure")
+
+
+/**
+ * This class represents the model for the measure definition
+ * and contains methods and queries to interact with the database to
+ * manipulate and get,update and delete measure definition.
+ * 
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 public class MeasureDefinition implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -155,9 +170,10 @@ public class MeasureDefinition implements Serializable {
 	}
 	
 	/**
+	 * This method is used to update the measure definition passed through parameter
 	 * 
-	 * @param p
-	 * @return
+	 * @param p is the measure definition value to update
+	 * @return p the measure definition updated
 	 */
 	public static MeasureDefinition updateMeasureDefinition(MeasureDefinition p) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
@@ -171,8 +187,9 @@ public class MeasureDefinition implements Serializable {
 	
 	
 	/**
+	 * This method is used to remove the measure definition passed as parameter
 	 * 
-	 * @param p
+	 * @param p the measure definition to remove
 	 */
 	public static void removeMeasureDefinition(MeasureDefinition p) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
