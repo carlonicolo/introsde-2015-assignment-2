@@ -479,7 +479,7 @@ We can see that the new person have been created in the right way.
 
 ---
 
-### **Step 3.5. 
+### **Step 3.5.**
 Send **R#5** for the person you have just created. Then send R#1 with the id of that person. If the answer is 404, your result must be OK.
 
 **R#5** DELETE /person/{id} should delete the person identified by {id} from the system
@@ -504,7 +504,7 @@ Request #5: DELETE person/54 Accept: application/xml Content-Type: application/x
 
 ---
 
-### **Step 3.6. 
+### **Step 3.6.**
 Follow now with the **R#9 (GET BASE_URL/measureTypes)**. 
 If response contains more than 2 measureTypes - result is OK, else is ERROR (less than 3 measureTypes). Save all measureTypes into array (measure_types)
 
@@ -569,7 +569,7 @@ Request #6: GET /measureTypes Accept: application/xml Content-Type: application/
 
 ---
 
-### **Step 3.7. 
+### **Step 3.7.**
 Send **R#6 (GET BASE_URL/person/{id}/{measureType})** 
 for the first person you obtained at the beginning and the last person, and for each measure types from measure_types. If no response has at least one measure - result is ERROR (no data at all) else result is OK. Store one measure_id and one measureType.
 
@@ -615,7 +615,7 @@ Request #7: GET /measureTypes/1/weight Accept: application/xml Content-Type: app
 
 ---
 
-### **Step 3.8. 
+### **Step 3.8.** 
 Send **R#7 (GET BASE_URL/person/{id}/{measureType}/{mid})** for the stored measure_id and measureType. If the response is 200, result is OK, else is ERROR.
 
 **R#7** GET /person/{id}/{measureType}/{mid} should return the value of {measureType} (e.g. weight) identified by {mid} for person identified by {id}
