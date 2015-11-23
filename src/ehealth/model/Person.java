@@ -49,7 +49,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * In particular the two queries Person.findAll and Person.findByMeasureDefRange
  * used in the methods getAll() and getPersonMeasureRange(MeasureDefinition md, double min, double max)
  * 
- * @author Carlo Nicolò
+ * @author Carlo Nicolo'
  *
  */
 
