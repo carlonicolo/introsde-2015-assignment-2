@@ -1,0 +1,308 @@
+
+execute.client.myserver.xml:
+     [java] xml
+     [java] https://introsde-server-carlo.herokuapp.com/sdelab/
+     [java] =============================================================================================================
+     [java] Request #1: GET person/ Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <people>
+     [java]   <person>
+     [java]     <idPerson>1</idPerson>
+     [java]     <firstname>Joe</firstname>
+     [java]     <lastname>Brigante</lastname>
+     [java]     <birthdate>1977-08-31T09:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.83</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>72</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java]   <person>
+     [java]     <idPerson>2</idPerson>
+     [java]     <firstname>Andrew</firstname>
+     [java]     <lastname>Law</lastname>
+     [java]     <birthdate>1998-08-31T08:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.87</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>89</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java]   <person>
+     [java]     <idPerson>3</idPerson>
+     [java]     <firstname>Bob</firstname>
+     [java]     <lastname>Marley</lastname>
+     [java]     <birthdate>1968-08-31T10:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.70</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>68</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java]   <person>
+     [java]     <idPerson>51</idPerson>
+     [java]     <firstname>Joe</firstname>
+     [java]     <healthprofile/>
+     [java]   </person>
+     [java] </people>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #2: GET person/1 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <person>
+     [java]   <idPerson>1</idPerson>
+     [java]   <firstname>Joe</firstname>
+     [java]   <lastname>Brigante</lastname>
+     [java]   <birthdate>1977-08-31T09:00:00Z</birthdate>
+     [java]   <healthprofile>
+     [java]     <measureType>
+     [java]       <measure>height</measure>
+     [java]       <value>1.83</value>
+     [java]     </measureType>
+     [java]     <measureType>
+     [java]       <measure>weight</measure>
+     [java]       <value>72</value>
+     [java]     </measureType>
+     [java]   </healthprofile>
+     [java] </person>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #3: PUT person/1 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [ERROR]
+     [java] ==> HTTP Status: [201]
+     [java] [BODY]
+     [java] 
+     [java] <person>
+     [java]   <idPerson>1</idPerson>
+     [java]   <firstname>Joe</firstname>
+     [java]   <lastname>Brigante</lastname>
+     [java]   <birthdate>1977-08-31T09:00:00Z</birthdate>
+     [java]   <healthprofile>
+     [java]     <measureType>
+     [java]       <measure>height</measure>
+     [java]       <value>1.83</value>
+     [java]     </measureType>
+     [java]     <measureType>
+     [java]       <measure>weight</measure>
+     [java]       <value>72</value>
+     [java]     </measureType>
+     [java]   </healthprofile>
+     [java] </person>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #4: POST person/ Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <person>
+     [java]   <idPerson>54</idPerson>
+     [java]   <firstname>Chuck</firstname>
+     [java]   <lastname>Norris</lastname>
+     [java]   <birthdate>1945-01-01T00:00:00Z</birthdate>
+     [java]   <healthprofile>
+     [java]     <measureType>
+     [java]       <measure>weight</measure>
+     [java]       <value>78.9</value>
+     [java]     </measureType>
+     [java]     <measureType>
+     [java]       <measure>height</measure>
+     [java]       <value>172</value>
+     [java]     </measureType>
+     [java]   </healthprofile>
+     [java] </person>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #5: DELETE person/54 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [404]
+     [java] [BODY]
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #6: GET /measureTypes Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <measureTypes>
+     [java]   <measureType>weight</measureType>
+     [java]   <measureType>height</measureType>
+     [java]   <measureType>steps</measureType>
+     [java]   <measureType>blood pressure</measureType>
+     [java]   <measureType>heart rate</measureType>
+     [java]   <measureType>bmi</measureType>
+     [java] </measureTypes>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #7: GET /measureTypes Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <measureHistory>
+     [java]   <mesure>
+     [java]     <mid>2</mid>
+     [java]     <value>110</value>
+     [java]     <created>2015-11-18T09:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>53</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java] </measureHistory>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #8: GET person/1/weight/2 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] Mid value: 110
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #9: POST person/1/weight Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <lifestatus>
+     [java]   <measure>weight</measure>
+     [java]   <value>72</value>
+     [java] </lifestatus>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #10: PUT person/1/weight/56 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [201]
+     [java] [BODY]
+     [java] 
+     [java] <measureHistory>
+     [java]   <mesure>
+     [java]     <mid>2</mid>
+     [java]     <value>110</value>
+     [java]     <created>2015-11-18T09:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>53</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>56</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java] </measureHistory>
+     [java] 
+     [java] ===========================================================
+     [java] =============================================================================================================
+     [java] Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <measureHistory>
+     [java]   <mesure>
+     [java]     <mid>2</mid>
+     [java]     <value>110</value>
+     [java]     <created>2015-11-18T09:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>53</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java]   <mesure>
+     [java]     <mid>56</mid>
+     [java]     <value>90</value>
+     [java]     <created>2011-12-09T00:00:00Z</created>
+     [java]   </mesure>
+     [java] </measureHistory>
+     [java] 
+     [java] =============================================================================================================
+     [java] Request #12: GET person/1?weight?max=100&min=20 Accept: application/xml Content-Type: application/xml
+     [java] ==> Result: [OK]
+     [java] ==> HTTP Status: [200]
+     [java] [BODY]
+     [java] 
+     [java] <people>
+     [java]   <person>
+     [java]     <idPerson>2</idPerson>
+     [java]     <firstname>Andrew</firstname>
+     [java]     <lastname>Law</lastname>
+     [java]     <birthdate>1998-08-31T08:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.87</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>89</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java]   <person>
+     [java]     <idPerson>3</idPerson>
+     [java]     <firstname>Bob</firstname>
+     [java]     <lastname>Marley</lastname>
+     [java]     <birthdate>1968-08-31T10:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.70</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>68</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java]   <person>
+     [java]     <idPerson>1</idPerson>
+     [java]     <firstname>Joe</firstname>
+     [java]     <lastname>Brigante</lastname>
+     [java]     <birthdate>1977-08-31T09:00:00Z</birthdate>
+     [java]     <healthprofile>
+     [java]       <measureType>
+     [java]         <measure>height</measure>
+     [java]         <value>1.83</value>
+     [java]       </measureType>
+     [java]       <measureType>
+     [java]         <measure>weight</measure>
+     [java]         <value>72</value>
+     [java]       </measureType>
+     [java]     </healthprofile>
+     [java]   </person>
+     [java] </people>
+     [java] 
