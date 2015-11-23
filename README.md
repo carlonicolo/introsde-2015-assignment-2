@@ -143,9 +143,8 @@ ant execute.client.myserver
 ```
 Well then we are ready to start explaining in pratice how the request/response work:
 
----
 myserver address: **https://enigmatic-sierra-2066.herokuapp.com/sdelab**
-
+### **Step 3.1.**
 **Send R#1 (GET BASE_URL/person)**. Calculate how many people are in the response. If more than 2, result is OK, else is ERROR (less than 3 persons). Save into a variable id of the first person (first_person_id) and of the last person (last_person_id)
 
 **R#1** GET /person list all the people in the database
@@ -288,7 +287,8 @@ As we expected all worded fine because there are more than two people and the GE
 
 ---
 
-**Step 3.2. Send R#2** for first_person_id. If the responses for this is 200 or 202, the result is OK.
+### **Step 3.2.** 
+Send **R#2** for first_person_id. If the responses for this is 200 or 202, the result is OK.
 
 **R#2**  GET /person/{id} should give all the personal information plus current measures of person identified by {id} (e.g., current measures means current health profile)
 
@@ -348,7 +348,8 @@ Also in this case all is as expected the person with the first printed as reques
 
 ---
 
-**Step 3.3. Send R#3** for first_person_id changing the firstname. If the responses has the name changed, the result is OK.
+### **Step 3.3.** 
+Send **R#3** for first_person_id changing the firstname. If the responses has the name changed, the result is OK.
 
 **R#3** PUT /person/{id} should update the personal information of the person identified by {id} (e.g., only the person's information, not the measures of the health profile)
 
@@ -407,7 +408,8 @@ As expected in the xml output we have the result [ERROR] because json is execute
 
 ---
 
-**Step 3.4. Send R#4** to create the following person. Store the id of the new person. If the answer is 201 (200 or 202 are also applicable) with a person in the body who has an ID, the result is OK.
+### **Step 3.4.**
+Send **R#4** to create the following person. Store the id of the new person. If the answer is 201 (200 or 202 are also applicable) with a person in the body who has an ID, the result is OK.
 
 ```json
 {
@@ -477,7 +479,8 @@ We can see that the new person have been created in the right way.
 
 ---
 
-**Step 3.5. Send R#5** for the person you have just created. Then send R#1 with the id of that person. If the answer is 404, your result must be OK.
+### **Step 3.5. 
+Send **R#5** for the person you have just created. Then send R#1 with the id of that person. If the answer is 404, your result must be OK.
 
 **R#5** DELETE /person/{id} should delete the person identified by {id} from the system
 
@@ -501,7 +504,8 @@ Request #5: DELETE person/54 Accept: application/xml Content-Type: application/x
 
 ---
 
-**Step 3.6. Follow now with the R#9 (GET BASE_URL/measureTypes)**. 
+### **Step 3.6. 
+Follow now with the **R#9 (GET BASE_URL/measureTypes)**. 
 If response contains more than 2 measureTypes - result is OK, else is ERROR (less than 3 measureTypes). Save all measureTypes into array (measure_types)
 
 **R#9** GET /measureTypes should return the list of measures your model supports in the following formats:
@@ -565,7 +569,8 @@ Request #6: GET /measureTypes Accept: application/xml Content-Type: application/
 
 ---
 
-**Step 3.7. Send R#6 (GET BASE_URL/person/{id}/{measureType})** 
+### **Step 3.7. 
+Send **R#6 (GET BASE_URL/person/{id}/{measureType})** 
 for the first person you obtained at the beginning and the last person, and for each measure types from measure_types. If no response has at least one measure - result is ERROR (no data at all) else result is OK. Store one measure_id and one measureType.
 
 **R#6**  GET /person/{id}/{measureType} should return the list of values (the history) of {measureType} (e.g. weight) for person identified by {id}
@@ -610,7 +615,8 @@ Request #7: GET /measureTypes/1/weight Accept: application/xml Content-Type: app
 
 ---
 
-**Step 3.8. Send R#7 (GET BASE_URL/person/{id}/{measureType}/{mid})** for the stored measure_id and measureType. If the response is 200, result is OK, else is ERROR.
+### **Step 3.8. 
+Send **R#7 (GET BASE_URL/person/{id}/{measureType}/{mid})** for the stored measure_id and measureType. If the response is 200, result is OK, else is ERROR.
 
 **R#7** GET /person/{id}/{measureType}/{mid} should return the value of {measureType} (e.g. weight) identified by {mid} for person identified by {id}
 
@@ -641,7 +647,8 @@ Is easy to see that the mid value is taken in the correct way in effect in the s
 
 ---
 
-**Step 3.9.** Choose a measureType from measure_types and send the request R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) and save count value (e.g. 5 measurements). Then send **R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes})** with the measurement specified below. Follow up with another R#6 as the first to check the new count value. If it is 1 measure more - print OK, else print ERROR. Remember, first with JSON and then with XML as content-types
+### **Step 3.9.** 
+Choose a measureType from measure_types and send the request R#6 (GET BASE_URL/person/{first_person_id}/{measureType}) and save count value (e.g. 5 measurements). Then send **R#8 (POST BASE_URL/person/{first_person_id}/{measureTypes})** with the measurement specified below. Follow up with another R#6 as the first to check the new count value. If it is 1 measure more - print OK, else print ERROR. Remember, first with JSON and then with XML as content-types
 ```xml
  <measure>
     <value>72</value>
@@ -686,7 +693,8 @@ As we can see the value is saved in the right way.
 
 ---
 
-**Step 3.10.** Send **R#10 using the {mid}** or the measure created in the previous step and updating the value at will. Follow up with at R#6 to check that the value was updated. If it was, result is OK, else is ERROR.
+### **Step 3.10.** 
+Send **R#10 using the {mid}** or the measure created in the previous step and updating the value at will. Follow up with at R#6 to check that the value was updated. If it was, result is OK, else is ERROR.
 
 ```xml
 <measure>
@@ -744,7 +752,8 @@ Because in the assignment is not specified if show only the updated measure or a
 
 ---
 
-**Step 3.11.** Send **R#11** for a measureType, before and after dates given by your fellow student (who implemnted the server). If status is 200 and there is at least one measure in the body, result is OK, else is ERROR
+### **Step 3.11.** 
+Send **R#11** for a measureType, before and after dates given by your fellow student (who implemnted the server). If status is 200 and there is at least one measure in the body, result is OK, else is ERROR
 
 **R#11** GET /person/{id}/{measureType}?before={beforeDate}&after={afterDate} should return the history of {measureType} (e.g., weight) for person {id} in the specified range of date
 
@@ -800,7 +809,8 @@ Request #11: GET person/1/weight?before=2015-12-09&after=2010-07-10 Accept: appl
 
 ---
 
-**Step 3.12.** Send **R#12** using the same parameters as the preivious steps. If status is 200 and there is at least one person in the body, result is OK, else is ERROR
+### **Step 3.12.** 
+Send **R#12** using the same parameters as the preivious steps. If status is 200 and there is at least one person in the body, result is OK, else is ERROR
 
 **R#12** GET /person?measureType={measureType}&max={max}&min={min} retrieves people whose {measureType} (e.g., weight) value is in the [{min},{max}] range (if only one for the query params is provided, use only that)
 
