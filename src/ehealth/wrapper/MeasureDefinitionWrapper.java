@@ -11,6 +11,14 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import ehealth.model.MeasureDefinition;
 
+
+/**
+ * This class is a wrapper for diplaying the MeasureDefinition 
+ * as requested for the json format
+ * 
+ * @author Carlo Nicolo'
+ *
+ */
 @XmlRootElement(name="measureTypes")
 public class MeasureDefinitionWrapper {
 	
@@ -18,6 +26,7 @@ public class MeasureDefinitionWrapper {
 	@JsonProperty("measureTypes")
 	public List<MeasureDefinition> measureDefinition = new ArrayList<MeasureDefinition>();
 	
+	//set method
 	public void setMeasureDefinition(List<MeasureDefinition> definitions) {
 		this.measureDefinition = definitions;
 	}
